@@ -48,7 +48,7 @@ jobs:
         id: tags
         env:
           SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
-                run: |
+        run: |
           case "${{ github.event_name }}" in
             release) tags="${{ github.event.release.tag_name }} latest" ;;
             workflow_dispatch) tags="${{ github.event.inputs.tag_name }}" ;;
