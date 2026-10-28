@@ -16,7 +16,7 @@ use tokio::{
 };
 use tracing::{info, warn};
 
-use crate::config::{self, Settings, Targets, same_server};
+use crate::config::{self, Settings, Targets};
 
 const DEBOUNCE: Duration = Duration::from_millis(500);
 const KUBERNETES_DATA_LINK: &str = "..data";
@@ -111,7 +111,7 @@ fn apply(path: &Path, current: &mut Settings, targets: &watch::Sender<Arc<Target
             "key_path changed; restart the connector to apply it"
         );
     }
-    if !same_server(&next.server, &current.server) {
+    if next.server != current.server {
         warn!("server address changed; restart the connector to apply it");
     }
     if next.targets == current.targets {

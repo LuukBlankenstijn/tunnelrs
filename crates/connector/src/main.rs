@@ -61,7 +61,7 @@ async fn main() -> anyhow::Result<()> {
     .await
     .context("binding the iroh endpoint")?;
 
-    let server = settings.server.endpoint_addr();
+    let server = settings.server.clone();
     let (targets_tx, targets_rx) = watch::channel(Arc::new(settings.targets.clone()));
     let hangup = signal(SignalKind::hangup()).context("installing the SIGHUP handler")?;
     let mut terminate =

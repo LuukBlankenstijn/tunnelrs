@@ -8,26 +8,29 @@ use iroh::{
 use remoc::{ConnectExt, RemoteSend};
 use serde::Deserialize;
 
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
 pub struct ServerAddr {
     pub id: EndpointId,
     #[serde(default)]
     pub relays: Vec<RelayUrl>,
     #[serde(default)]
-    pub addrs: Vec<SocketAddr>,
+    pub addrs: Vec<String>,
 }
 
 impl ServerAddr {
-    pub fn endpoint_addr(&self) -> EndpointAddr {
-        let addr = self
+    pub async fn resolve(&self) -> anyhow::Result<EndpointAddr> {
+        let mut addr = self
             .relays
             .iter()
             .cloned()
             .fold(EndpointAddr::new(self.id), EndpointAddr::with_relay_url);
-        self.addrs
-            .iter()
-            .copied()
-            .fold(addr, EndpointAddr::with_ip_addr)
+        for host_port in &self.addrs {
+            let resolved = tokio::net::lookup_host(host_port.as_str())
+                .await
+                .with_context(|| format!("resolving server address {host_port}"))?;
+            addr = resolved.fold(addr, EndpointAddr::with_ip_addr);
+        }
+        Ok(addr)
     }
 }
 

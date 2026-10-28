@@ -6,7 +6,7 @@ use std::{
 
 use anyhow::{Context, anyhow, bail};
 use iroh::{
-    Endpoint, EndpointAddr, EndpointId,
+    Endpoint, EndpointId,
     endpoint::{Connection, VarInt},
 };
 use remoc::{robs::RecvError, rtc::Client};
@@ -14,7 +14,7 @@ use tokio::sync::watch;
 use tracing::{info, warn};
 use tunnelrs_proto::{
     CONNECTOR_ALPN, Connector, ConnectorClient, ConnectorSession, Exposure, Hostname, RouteStatus,
-    consume_session,
+    ServerAddr, consume_session,
 };
 
 use crate::{
@@ -30,7 +30,7 @@ const MAX_STATUS_ENTRIES: usize = 65_536;
 
 pub async fn run(
     endpoint: Endpoint,
-    server: EndpointAddr,
+    server: ServerAddr,
     mut targets: watch::Receiver<Arc<Targets>>,
 ) {
     let mut backoff = Backoff::new();
@@ -57,11 +57,11 @@ pub async fn run(
 
 async fn establish(
     endpoint: &Endpoint,
-    server: &EndpointAddr,
+    server: &ServerAddr,
 ) -> anyhow::Result<(Connection, ConnectorClient)> {
     let handshake = async {
         let conn = endpoint
-            .connect(server.clone(), CONNECTOR_ALPN)
+            .connect(server.resolve().await?, CONNECTOR_ALPN)
             .await
             .context("connecting to the server")?;
         let session = consume_session::<ConnectorSession>(&conn).await?;

@@ -192,7 +192,7 @@ async fn execute(
 ) -> anyhow::Result<()> {
     tracing::debug!(server = %server.id, "connecting");
     let conn = endpoint
-        .connect(server.endpoint_addr(), ADMIN_ALPN)
+        .connect(server.resolve().await?, ADMIN_ALPN)
         .await
         .with_context(|| format!("connecting to server {}", server.id))?;
     let session = consume_session::<AdminSession>(&conn).await?;

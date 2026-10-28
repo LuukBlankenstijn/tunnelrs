@@ -120,10 +120,6 @@ pub fn announcement(targets: &Targets) -> Vec<Exposure> {
         .collect()
 }
 
-pub fn same_server(left: &ServerAddr, right: &ServerAddr) -> bool {
-    left.id == right.id && left.relays == right.relays && left.addrs == right.addrs
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;

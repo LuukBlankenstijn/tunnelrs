@@ -54,7 +54,7 @@ async fn session(
     backoff: &mut Backoff,
 ) -> anyhow::Result<()> {
     let conn = endpoint
-        .connect(config.server.endpoint_addr(), ADMIN_ALPN)
+        .connect(config.server.resolve().await?, ADMIN_ALPN)
         .await
         .context("connecting to server")?;
     let session = consume_session::<AdminSession>(&conn).await?;
