@@ -1,3 +1,4 @@
 /target
 /.direnv
 /.sqlx-dev.db*
+/result*
