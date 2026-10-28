@@ -1,0 +1,70 @@
+name: Containers
+
+on:
+  workflow_run:
+    workflows: ["Build and push to Cachix"]
+    types: [completed]
+    branches: [main]
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: "Image tag to publish (e.g. v0.1.0)"
+        required: true
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  REGISTRY: ghcr.io
+
+jobs:
+  image:
+    runs-on: ubuntu-latest
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    permissions:
+      contents: read
+      packages: write
+    strategy:
+      fail-fast: false
+      matrix:
+        component: [server, connector, operator]
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+      - uses: cachix/install-nix-action@v31
+      - uses: cachix/cachix-action@v17
+        with:
+          name: luukblankenstijn
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+
+      - name: Build image
+        run: nix build .#tunnelrs-${{ matrix.component }}-image --print-build-logs
+
+      - name: Resolve tags
+        id: tags
+        env:
+          SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+                run: |
+          case "${{ github.event_name }}" in
+            release) tags="${{ github.event.release.tag_name }} latest" ;;
+            workflow_dispatch) tags="${{ github.event.inputs.tag_name }}" ;;
+            workflow_run) tags="main sha-${SHA::7}" ;;
+          esac
+          echo "tags=$tags" >> "$GITHUB_OUTPUT"
+          echo "repo=${GITHUB_REPOSITORY,,}" >> "$GITHUB_OUTPUT"
+
+      - name: Push image
+                env:
+          REGISTRY_USER: ${{ github.actor }}
+          REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          image="$REGISTRY/${{ steps.tags.outputs.repo }}/${{ matrix.component }}"
+          for tag in ${{ steps.tags.outputs.tags }}; do
+            nix run nixpkgs#skopeo -- copy \
+              --dest-creds "$REGISTRY_USER:$REGISTRY_TOKEN" \
+              docker-archive:result "docker://$image:$tag"
+          done
