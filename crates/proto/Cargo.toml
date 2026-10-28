@@ -1,0 +1,12 @@
+[package]
+name = "tunnelrs-proto"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+remoc.workspace = true
+serde.workspace = true
+thiserror.workspace = true
+tokio.workspace = true
+anyhow.workspace = true
+iroh.workspace = true

@@ -1,0 +1,25 @@
+[package]
+name = "tunnelrs-server"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+tunnelrs-proto.workspace = true
+anyhow.workspace = true
+arc-swap.workspace = true
+bytes.workspace = true
+clap.workspace = true
+futures.workspace = true
+http-body-util.workspace = true
+hyper.workspace = true
+hyper-util.workspace = true
+iroh.workspace = true
+remoc.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+sqlx.workspace = true
+thiserror.workspace = true
+tokio.workspace = true
+toml-file-refs.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true

@@ -1,0 +1,12 @@
+{
+  "db_name": "SQLite",
+  "query": "INSERT INTO grants (connector_id, patterns, tls_modes) VALUES (?, ?, ?) ON CONFLICT (connector_id) DO UPDATE SET patterns = excluded.patterns, tls_modes = excluded.tls_modes",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Right": 3
+    },
+    "nullable": []
+  },
+  "hash": "2157d0ad2c8b61a8900d9a62aae62a9494395e35614edc5f111091226aa50eec"
+}

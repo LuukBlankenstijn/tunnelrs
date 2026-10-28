@@ -1,0 +1,16 @@
+[package]
+name = "tunnelrs-ctl"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+tunnelrs-proto.workspace = true
+anyhow.workspace = true
+clap.workspace = true
+iroh.workspace = true
+remoc.workspace = true
+serde.workspace = true
+tokio.workspace = true
+toml-file-refs.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true

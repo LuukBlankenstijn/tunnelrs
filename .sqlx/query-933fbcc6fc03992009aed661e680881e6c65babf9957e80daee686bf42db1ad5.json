@@ -1,0 +1,12 @@
+{
+  "db_name": "SQLite",
+  "query": "INSERT INTO announcements (connector_id, hostname, tls, meta) VALUES (?, ?, ?, ?)",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Right": 4
+    },
+    "nullable": []
+  },
+  "hash": "933fbcc6fc03992009aed661e680881e6c65babf9957e80daee686bf42db1ad5"
+}

@@ -1,0 +1,62 @@
+{
+  "db_name": "SQLite",
+  "query": "SELECT connector_id AS \"connector_id!\", hostname AS \"hostname!\", tls AS \"tls!\", meta AS \"meta!\" FROM announcements",
+  "describe": {
+    "columns": [
+      {
+        "name": "connector_id!",
+        "ordinal": 0,
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "announcements",
+            "name": "connector_id"
+          }
+        }
+      },
+      {
+        "name": "hostname!",
+        "ordinal": 1,
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "announcements",
+            "name": "hostname"
+          }
+        }
+      },
+      {
+        "name": "tls!",
+        "ordinal": 2,
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "announcements",
+            "name": "tls"
+          }
+        }
+      },
+      {
+        "name": "meta!",
+        "ordinal": 3,
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "announcements",
+            "name": "meta"
+          }
+        }
+      }
+    ],
+    "parameters": {
+      "Right": 0
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "95c0a99e488a01c041e1b8596945e07515ef8de52127f5a66d1c3942a49c1750"
+}

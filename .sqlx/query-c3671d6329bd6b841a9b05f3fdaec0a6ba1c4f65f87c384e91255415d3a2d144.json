@@ -1,0 +1,62 @@
+{
+  "db_name": "SQLite",
+  "query": "SELECT hostname AS \"hostname!\", tls AS \"tls!\", meta AS \"meta!\", offline_since AS \"offline_since?\" FROM routes",
+  "describe": {
+    "columns": [
+      {
+        "name": "hostname!",
+        "ordinal": 0,
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "routes",
+            "name": "hostname"
+          }
+        }
+      },
+      {
+        "name": "tls!",
+        "ordinal": 1,
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "routes",
+            "name": "tls"
+          }
+        }
+      },
+      {
+        "name": "meta!",
+        "ordinal": 2,
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "routes",
+            "name": "meta"
+          }
+        }
+      },
+      {
+        "name": "offline_since?",
+        "ordinal": 3,
+        "type_info": "Integer",
+        "origin": {
+          "Table": {
+            "table": "routes",
+            "name": "offline_since"
+          }
+        }
+      }
+    ],
+    "parameters": {
+      "Right": 0
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      true
+    ]
+  },
+  "hash": "c3671d6329bd6b841a9b05f3fdaec0a6ba1c4f65f87c384e91255415d3a2d144"
+}

@@ -1,0 +1,38 @@
+{
+  "db_name": "SQLite",
+  "query": "SELECT id AS \"id!\", enrollment AS \"enrollment!\" FROM connectors",
+  "describe": {
+    "columns": [
+      {
+        "name": "id!",
+        "ordinal": 0,
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "connectors",
+            "name": "id"
+          }
+        }
+      },
+      {
+        "name": "enrollment!",
+        "ordinal": 1,
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "connectors",
+            "name": "enrollment"
+          }
+        }
+      }
+    ],
+    "parameters": {
+      "Right": 0
+    },
+    "nullable": [
+      false,
+      false
+    ]
+  },
+  "hash": "fb2393a68d3a58794299affb6e2e53247de2bd06ed2a16fd277ca146e1e01971"
+}

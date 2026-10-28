@@ -1,0 +1,50 @@
+{
+  "db_name": "SQLite",
+  "query": "SELECT connector_id AS \"connector_id!\", patterns AS \"patterns!\", tls_modes AS \"tls_modes?\" FROM grants",
+  "describe": {
+    "columns": [
+      {
+        "name": "connector_id!",
+        "ordinal": 0,
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "grants",
+            "name": "connector_id"
+          }
+        }
+      },
+      {
+        "name": "patterns!",
+        "ordinal": 1,
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "grants",
+            "name": "patterns"
+          }
+        }
+      },
+      {
+        "name": "tls_modes?",
+        "ordinal": 2,
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "grants",
+            "name": "tls_modes"
+          }
+        }
+      }
+    ],
+    "parameters": {
+      "Right": 0
+    },
+    "nullable": [
+      false,
+      false,
+      true
+    ]
+  },
+  "hash": "973551ac1dbe3261b784ddc67134920aaf931bf664a17c6a2d8133cf32cfb002"
+}

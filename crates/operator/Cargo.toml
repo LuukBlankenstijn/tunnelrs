@@ -1,0 +1,20 @@
+[package]
+name = "tunnelrs-operator"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+tunnelrs-proto.workspace = true
+anyhow.workspace = true
+clap.workspace = true
+iroh.workspace = true
+k8s-openapi.workspace = true
+kube.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+tokio.workspace = true
+toml.workspace = true
+toml-file-refs.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true

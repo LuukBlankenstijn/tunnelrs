@@ -1,0 +1,12 @@
+{
+  "db_name": "SQLite",
+  "query": "DELETE FROM grants WHERE connector_id = ?",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Right": 1
+    },
+    "nullable": []
+  },
+  "hash": "cfbdc3f29a48855edac2a98956b4356f8948ac8245a6eab3ab77f89a1b101d07"
+}

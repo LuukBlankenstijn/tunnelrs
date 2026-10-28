@@ -1,0 +1,12 @@
+{
+  "db_name": "SQLite",
+  "query": "INSERT INTO connectors (id, enrollment, updated_at) VALUES (?, ?, ?) ON CONFLICT (id) DO UPDATE SET enrollment = excluded.enrollment, updated_at = excluded.updated_at",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Right": 3
+    },
+    "nullable": []
+  },
+  "hash": "4807a1d40794b5360f04652338fdfa5934e5c6ada883e5d118b182f2e94f20a3"
+}

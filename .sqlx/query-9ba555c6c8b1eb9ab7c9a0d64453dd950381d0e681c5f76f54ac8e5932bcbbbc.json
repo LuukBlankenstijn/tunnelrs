@@ -1,0 +1,26 @@
+{
+  "db_name": "SQLite",
+  "query": "SELECT db_id AS \"db_id!\" FROM meta WHERE id = 0",
+  "describe": {
+    "columns": [
+      {
+        "name": "db_id!",
+        "ordinal": 0,
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "meta",
+            "name": "db_id"
+          }
+        }
+      }
+    ],
+    "parameters": {
+      "Right": 0
+    },
+    "nullable": [
+      false
+    ]
+  },
+  "hash": "9ba555c6c8b1eb9ab7c9a0d64453dd950381d0e681c5f76f54ac8e5932bcbbbc"
+}

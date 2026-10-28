@@ -1,0 +1,12 @@
+{
+  "db_name": "SQLite",
+  "query": "DELETE FROM announcements WHERE connector_id = ?",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Right": 1
+    },
+    "nullable": []
+  },
+  "hash": "c5d1e1d82c4c8a7517a7ff2dce6c1adc6a5113c87832d07403c9b16f4bf30588"
+}

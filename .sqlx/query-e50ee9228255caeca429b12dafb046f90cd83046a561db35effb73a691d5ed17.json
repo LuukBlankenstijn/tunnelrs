@@ -1,0 +1,12 @@
+{
+  "db_name": "SQLite",
+  "query": "INSERT INTO routes (hostname, tls, meta, offline_since) VALUES (?, ?, ?, ?) ON CONFLICT (hostname) DO UPDATE SET tls = excluded.tls, meta = excluded.meta, offline_since = excluded.offline_since",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Right": 4
+    },
+    "nullable": []
+  },
+  "hash": "e50ee9228255caeca429b12dafb046f90cd83046a561db35effb73a691d5ed17"
+}
