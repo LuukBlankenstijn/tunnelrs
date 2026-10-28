@@ -32,7 +32,7 @@ let
       // {
         inherit cargoArtifacts;
         pname = "tunnelrs-${name}";
-        cargoExtraArgs = "--locked -p tunnelrs-${name}";
+        cargoExtraArgs = "--locked --workspace --bin tunnelrs-${name}";
         doCheck = false;
         meta = {
           inherit description;
