@@ -21,7 +21,7 @@ use tunnelrs_proto::{
 #[derive(Parser)]
 #[command(name = "tunnelrs-ctl", about = "Administer a tunnelrs server")]
 struct Cli {
-    #[arg(long, global = true)]
+    #[arg(long, global = true, env = "TUNNELRS_CTL_CONFIG")]
     config: Option<PathBuf>,
     #[command(subcommand)]
     command: Command,

@@ -7,7 +7,7 @@
 
 let
   mkImage =
-    package: extraContents:
+    package: extraContents: extraEnv:
     dockerTools.buildLayeredImage {
       name = package.pname;
       tag = "latest";
@@ -15,12 +15,14 @@ let
       config = {
         Entrypoint = [ (lib.getExe package) ];
         User = "65532:65532";
-        Env = [ "SSL_CERT_FILE=${cacert}/etc/ssl/certs/ca-bundle.crt" ];
+        Env = [ "SSL_CERT_FILE=${cacert}/etc/ssl/certs/ca-bundle.crt" ] ++ extraEnv;
       };
     };
 in
 {
-  tunnelrs-server-image = mkImage packages.tunnelrs-server [ packages.tunnelrs-ctl ];
-  tunnelrs-connector-image = mkImage packages.tunnelrs-connector [ ];
-  tunnelrs-operator-image = mkImage packages.tunnelrs-operator [ ];
+  tunnelrs-server-image = mkImage packages.tunnelrs-server [ packages.tunnelrs-ctl ] [
+    "TUNNELRS_CTL_CONFIG=/etc/tunnelrs/config/ctl.toml"
+  ];
+  tunnelrs-connector-image = mkImage packages.tunnelrs-connector [ ] [ ];
+  tunnelrs-operator-image = mkImage packages.tunnelrs-operator [ ] [ ];
 }
